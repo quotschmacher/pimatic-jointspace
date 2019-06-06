@@ -1,0 +1,36 @@
+{ 
+  "name": "pimatic-jointspace",
+  "description": "The plugin description",
+  "author": "Your Name <you@example.com> (http://your-website)",
+  "license": "GPL-2.0",
+  "main": "my-plugin",
+  "files": [
+    "jointspace.coffee",
+    "README.md",
+    "LICENSE",
+    "jointspace-config-schema.coffee"
+  ],
+  "keywords": [
+    "pimatic",
+    "pimatic-plugin",
+    "jointspace",
+    "philips"
+  ],
+  "version": "0.1.0",
+  "homepage": "https://github.com/quotschmacher/pimatic-jointspace",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/quotschmacher/pimatic-jointspace.git"
+  },
+  "configSchema": "jointspace-config-schema.coffee",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "pimatic": "0.9.*"
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=2"
+  }
+}
