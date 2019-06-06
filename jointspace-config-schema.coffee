@@ -8,4 +8,8 @@ module.exports = {
       description: "Some option"
       type: "string"
       default: "foo"
+    tvip:
+      description: "IP of the TV"
+      type: "string"
+      default: ""
 }

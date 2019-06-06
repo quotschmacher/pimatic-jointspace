@@ -1,5 +1,5 @@
-pimatic-plugin-template
-=======================
+pimatic-jointspace
+==================
 
 See the [development guide](https://pimatic.teamemo.com/Development) for
 details.

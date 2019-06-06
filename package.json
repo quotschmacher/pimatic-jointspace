@@ -3,7 +3,7 @@
   "description": "The plugin description",
   "author": "Your Name <you@example.com> (http://your-website)",
   "license": "GPL-2.0",
-  "main": "my-plugin",
+  "main": "jointspace",
   "files": [
     "jointspace.coffee",
     "README.md",
