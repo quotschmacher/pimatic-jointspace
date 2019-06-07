@@ -20,6 +20,8 @@ module.exports = (env) ->
   # Require the [cassert library](https://github.com/rhoot/cassert).
   assert = env.require 'cassert'
 
+  request = env.require 'request'
+
   # Include your own depencies with nodes global require function:
   #  
   #     someThing = require 'someThing'
@@ -41,6 +43,40 @@ module.exports = (env) ->
     # 
     init: (app, @framework, @config) =>
       env.logger.info("Hello World")
+
+      deviceConfigDef = require("./device-config-schema")
+
+      @framework.deviceManager.registerDeviceClass("JointspacePowerButton", {
+        configDef: deviceConfigDef.JointspacePowerButton, 
+        createCallback: (config) => new JointspacePowerButton(config)
+      })
+
+
+  class JointspacePowerButton extends env.devices.ButtonsDevice
+    constructor: (@config, @plugin) ->
+      @name = @config.name
+      @tvIP = @config.tvIP
+      @buttons = @config.buttons
+
+      env.logger.info("Button Device init")
+
+      super(@config)
+
+    destroy: () ->
+      @requestPromise.cancel() if @requestPromise?
+      super()
+
+    buttonPressed: (buttonId) ->
+      for b in @config.buttons
+        if b.id is buttonId
+          env.logger.info("pressing a button!!!")
+          json_params = {key: "Standby"}
+
+          request.post {uri:"http://#{@tvIP}:1925/1/input/key", json : json_params}, (error, response, body) ->
+            env.logger.debug(response)
+
+          return Promise.resolve()
+  
 
   # ###Finally
   # Create a instance of my plugin

@@ -1,4 +1,4 @@
-{ 
+{
   "name": "pimatic-jointspace",
   "description": "The plugin description",
   "author": "Your Name <you@example.com> (http://your-website)",
@@ -25,6 +25,7 @@
   },
   "configSchema": "jointspace-config-schema.coffee",
   "dependencies": {
+    "request": "^2.88.0"
   },
   "peerDependencies": {
     "pimatic": "0.9.*"
