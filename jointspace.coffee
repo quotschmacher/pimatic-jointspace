@@ -20,7 +20,7 @@ module.exports = (env) ->
   # Require the [cassert library](https://github.com/rhoot/cassert).
   assert = env.require 'cassert'
 
-  request = env.require 'request'
+  request = require 'request'
 
   # Include your own depencies with nodes global require function:
   #  
@@ -43,22 +43,32 @@ module.exports = (env) ->
     # 
     init: (app, @framework, @config) =>
       env.logger.info("Hello World")
+      env.logger.info @config.tvip
+
+      @tvip = @config.tvip
 
       deviceConfigDef = require("./device-config-schema")
 
       @framework.deviceManager.registerDeviceClass("JointspacePowerButton", {
         configDef: deviceConfigDef.JointspacePowerButton, 
-        createCallback: (config) => new JointspacePowerButton(config)
+        createCallback: (config) => new JointspacePowerButton(config, @)
       })
 
 
   class JointspacePowerButton extends env.devices.ButtonsDevice
     constructor: (@config, @plugin) ->
       @name = @config.name
-      @tvIP = @config.tvIP
+      @tvIP = @plugin.tvip
       @buttons = @config.buttons
 
       env.logger.info("Button Device init")
+      env.logger.info("IP of #{@name} is #{@tvIP}")
+
+      for b in @config.buttons
+        if b.text is ""
+          b.text = b.command
+        if b.id is ""
+          b.id = "#{b.command.toLowerCase()}"
 
       super(@config)
 
@@ -69,8 +79,8 @@ module.exports = (env) ->
     buttonPressed: (buttonId) ->
       for b in @config.buttons
         if b.id is buttonId
-          env.logger.info("pressing a button!!!")
-          json_params = {key: "Standby"}
+          env.logger.info("pressing button #{b.command}")
+          json_params = {key: b.command}
 
           request.post {uri:"http://#{@tvIP}:1925/1/input/key", json : json_params}, (error, response, body) ->
             env.logger.debug(response)
