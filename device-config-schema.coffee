@@ -1,7 +1,26 @@
 module.exports = {
   title: "pimatic-jointspace device config schema"
-  JointspacePowerButton: {
-    title: "JointspacePowerButton config options"
+  JointspaceSourceSelection: {
+    title: "JointspaceSourceSelection config options"
+    type: "object"
+    properties:
+      buttons:
+        description: "Source Selection Buttons"
+        type: "array"
+        default: []
+        format: "table"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "string"
+            text:
+              type: "string"
+            command:
+              type: "string"
+  }
+  JointspaceDirectInput: {
+    title: "JointspaceDirectInput config options"
     type: "object"
     properties:
       buttons:
