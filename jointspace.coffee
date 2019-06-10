@@ -88,9 +88,9 @@ module.exports = (env) ->
               for k, v of value
                 if k is "name"
                   button_text = v
-              button_id = key
+              #button_id = key
               button_config =
-                id: button_id
+                id: "jointspace_source_#{v.toLowerCase().replace(/ /g, "").replace(/\//g, "")}"
                 text: button_text
                 command: button_command
               buttonsArray.push(button_config)
