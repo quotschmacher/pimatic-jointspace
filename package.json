@@ -1,7 +1,7 @@
 {
   "name": "pimatic-jointspace",
-  "description": "The plugin description",
-  "author": "Your Name <you@example.com> (http://your-website)",
+  "description": "Control yout TV via Jointspace",
+  "author": "Sven Kicherer <sven.kicherer@yahoo.com> (http://www.sven-kicherer.de/)",
   "license": "GPL-2.0",
   "main": "jointspace",
   "files": [
@@ -16,9 +16,9 @@
     "jointspace",
     "philips"
   ],
-  "version": "0.1.0",
+  "version": "0.0.9",
   "homepage": "https://github.com/quotschmacher/pimatic-jointspace",
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git://github.com/quotschmacher/pimatic-jointspace.git"
