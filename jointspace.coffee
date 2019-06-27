@@ -42,7 +42,6 @@ module.exports = (env) ->
     #     
     # 
     init: (app, @framework, @config) =>
-      env.logger.info("Hello World")
       env.logger.info @config.tvip
 
       @tvip = @config.tvip
