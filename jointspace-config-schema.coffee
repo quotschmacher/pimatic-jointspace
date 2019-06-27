@@ -7,7 +7,6 @@ module.exports = {
     tvip:
       description: "IP of the TV"
       type: "string"
-      default: ""
     debug:
       description: "Flag for activating debug output"
       type: "boolean"
